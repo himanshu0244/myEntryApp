@@ -12,22 +12,18 @@ public class CommonConstants {
 	public static final String ADMIN = "ADMIN";
 	public static final String USERNAME = "USERNAME";
 	public static final String PASSWORD = "PASSWORD";
-	
-	//Asset Entity
+
+	// Asset Entity
 	public static final String ASSET = "ASSET";
 	public static final String ASSET_NUMBER = "ASSET_NUMBER";
 	public static final String ASSET_TYPE = "ASSET_TYPE";
 	public static final String MOVEMENT_ID = "MOVEMENT_ID";
-	
-	//Escort entity
+
+	// Escort entity
 	public static final String ESCORT = "ESCORT";
 	public static final String EMP_ID = "EMP_ID";
 	public static final String FIRST_NAME = "FIRST_NAME";
 	public static final String LAST_NAME = "LAST_NAME";
 	public static final String LOCATION = "LOCATION";
-
-	
-	
-	
 
 }
