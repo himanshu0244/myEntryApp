@@ -45,8 +45,8 @@ public class Escort implements Serializable {
 	@Column(name = ID, updatable = false, nullable = false)
 	private Long id;
 
-	@Column(name = EMP_ID, updatable = false, nullable = false)
-	private String empId;
+//	@Column(name = EMP_ID)
+//	private String empId;
 
 	@Column(name = FIRST_NAME)
 	private String firstName;

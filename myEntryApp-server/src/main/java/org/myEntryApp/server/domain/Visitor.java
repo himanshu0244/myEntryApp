@@ -5,6 +5,7 @@ import static org.myEntryApp.server.constants.CommonConstants.CONTACT_NUMNER;
 import static org.myEntryApp.server.constants.CommonConstants.EMP_ID;
 import static org.myEntryApp.server.constants.CommonConstants.ESCORT_EMP_ID;
 import static org.myEntryApp.server.constants.CommonConstants.FIRST_NAME;
+import static org.myEntryApp.server.constants.CommonConstants.ID;
 import static org.myEntryApp.server.constants.CommonConstants.IMAGE;
 import static org.myEntryApp.server.constants.CommonConstants.IN_TIME;
 import static org.myEntryApp.server.constants.CommonConstants.LAPTOP_SERIAL_NUMNER;
@@ -24,6 +25,8 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
@@ -43,7 +46,12 @@ import lombok.Setter;
 public class Visitor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue
+	@Column(name = ID, updatable = false, nullable = false)
+	private Long id;
+	
 	@Column(name = VISITOR_ID)
 	private String visitorId;
 

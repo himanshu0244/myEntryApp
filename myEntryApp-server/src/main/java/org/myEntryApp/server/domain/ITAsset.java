@@ -49,8 +49,8 @@ public class ITAsset {
 	private String movementType;
 	@Column(name = MOVEMENT_DATE)
 	private Timestamp movementDate;
-	@Column(name = EMP_ID)
-	private String empId;
+//	@Column(name = EMP_ID)
+//	private String empId;
 	@Column(name = ACCOUNT_NAME)
 	private String account;
 	@Column(name = LOCATION)
