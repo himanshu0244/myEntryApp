@@ -15,7 +15,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class VisitorDTO {
 
-	private String visitorId;
+	private String id;
 
 	private String visitorType;
 
@@ -33,7 +33,7 @@ public class VisitorDTO {
 
 	@Override
 	public String toString() {
-		return "VisitorDTO [visitorId=" + visitorId + ", visitorType=" + visitorType + ", firstName=" + firstName
+		return "VisitorDTO [id=" + id + ", visitorType=" + visitorType + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", contactNumber=" + contactNumber + ", purpose=" + purpose + ", location="
 				+ location + ", visitorEmpId=" + visitorEmpId + "]";
 	}

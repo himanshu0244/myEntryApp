@@ -26,6 +26,32 @@ public class VisitorServiceImpl implements VisitorService {
 		return prepareVisitorResponse(visitors);
 	}
 
+	@Override
+	public VisitorDTO createVisitor(VisitorDTO visitorDTO) {
+		Visitor visitor = new Visitor(); 
+		BeanUtils.copyProperties(visitorDTO, visitor);
+		visitorRepository.save(visitor);
+		return getVisitor(visitor.getId());
+	}
+	
+	@Override
+	public VisitorDTO updateVisitor(Long visitorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public VisitorDTO getVisitor(Long visitorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public VisitorDTO deleteVisitor(Long visitorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	private List<VisitorDTO> prepareVisitorResponse(List<Visitor> liVisitor) {
 		List<VisitorDTO> visitors = new ArrayList<>();
 		liVisitor.forEach(visitor -> {
@@ -36,5 +62,7 @@ public class VisitorServiceImpl implements VisitorService {
 
 		return visitors;
 	}
+
+	
 
 }

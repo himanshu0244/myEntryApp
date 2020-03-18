@@ -17,7 +17,6 @@ import static org.myEntryApp.server.constants.CommonConstants.PROXY;
 import static org.myEntryApp.server.constants.CommonConstants.PURPOSE;
 import static org.myEntryApp.server.constants.CommonConstants.REMARKS;
 import static org.myEntryApp.server.constants.CommonConstants.VISITOR;
-import static org.myEntryApp.server.constants.CommonConstants.VISITOR_ID;
 import static org.myEntryApp.server.constants.CommonConstants.VISITOR_TYPE;
 
 import java.io.Serializable;
@@ -52,9 +51,6 @@ public class Visitor implements Serializable {
 	@Column(name = ID, updatable = false, nullable = false)
 	private Long id;
 	
-	@Column(name = VISITOR_ID)
-	private String visitorId;
-
 	@Column(name = VISITOR_TYPE)
 	private String visitorType;
 

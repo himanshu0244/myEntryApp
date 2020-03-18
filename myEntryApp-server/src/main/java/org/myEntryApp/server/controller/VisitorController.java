@@ -18,7 +18,7 @@ public class VisitorController {
 	public List<VisitorDTO> getAllVisitors() {
 
 		List<VisitorDTO> visitorDtoList = visitorService.getAllVisitors();
-		
+		VisitorDTO VisitorDTO = new VisitorDTO();
 		return visitorDtoList;
 	}
 }
