@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.myEntryApp.server.domain.Visitor;
 import org.myEntryApp.server.dto.VisitorDTO;
+import org.myEntryApp.server.dto.VisitorRequestDTO;
+import org.myEntryApp.server.dto.VisitorResponseDTO;
 import org.myEntryApp.server.repository.VisitorRepository;
 import org.myEntryApp.server.service.VisitorService;
 import org.springframework.beans.BeanUtils;
@@ -14,55 +16,53 @@ import org.springframework.stereotype.Service;
 @Service
 public class VisitorServiceImpl implements VisitorService {
 
-	@Autowired
-	VisitorRepository visitorRepository;
+  @Autowired
+  VisitorRepository visitorRepository;
 
-	@Override
-	public List<VisitorDTO> getAllVisitors() {
-		List<Visitor> visitors = new ArrayList<>();
-		visitorRepository.fetchAllVisitors().ifPresent(liVisitor -> {
-			visitors.addAll(liVisitor);
-		});
-		return prepareVisitorResponse(visitors);
-	}
+  @Override
+  public VisitorResponseDTO getAllVisitors() {
+    List<Visitor> visitors = new ArrayList<>();
+    visitorRepository.fetchAllVisitors().ifPresent(liVisitor -> {
+      visitors.addAll(liVisitor);
+    });
+    return prepareVisitorResponse(visitors);
+  }
 
-	@Override
-	public VisitorDTO createVisitor(VisitorDTO visitorDTO) {
-		Visitor visitor = new Visitor(); 
-		BeanUtils.copyProperties(visitorDTO, visitor);
-		visitorRepository.save(visitor);
-		return getVisitor(visitor.getId());
-	}
-	
-	@Override
-	public VisitorDTO updateVisitor(Long visitorId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+  @Override
+  public VisitorResponseDTO createVisitor(VisitorRequestDTO visitorDTO) {
+    Visitor visitor = new Visitor();
+    BeanUtils.copyProperties(visitorDTO, visitor);
+    visitorRepository.save(visitor);
+    return getVisitor(visitor.getId());
+  }
 
-	@Override
-	public VisitorDTO getVisitor(Long visitorId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+  @Override
+  public VisitorResponseDTO updateVisitor(VisitorRequestDTO visitorDTO) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
-	@Override
-	public VisitorDTO deleteVisitor(Long visitorId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+  @Override
+  public VisitorResponseDTO getVisitor(Long visitorId) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
-	private List<VisitorDTO> prepareVisitorResponse(List<Visitor> liVisitor) {
-		List<VisitorDTO> visitors = new ArrayList<>();
-		liVisitor.forEach(visitor -> {
-			VisitorDTO visitorDTO = new VisitorDTO();
-			BeanUtils.copyProperties(visitor, visitorDTO);
-			visitors.add(visitorDTO);
-		});
+  @Override
+  public VisitorResponseDTO deleteVisitor(Long visitorId) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
-		return visitors;
-	}
+  private VisitorResponseDTO prepareVisitorResponse(List<Visitor> liVisitor) {
+    List<VisitorDTO> visitors = new ArrayList<>();
+    liVisitor.forEach(visitor -> {
+      VisitorDTO visitorDTO = new VisitorDTO();
+      BeanUtils.copyProperties(visitor, visitorDTO);
+      visitors.add(visitorDTO);
+    });
 
-	
+    return visitors;
+  }
 
 }

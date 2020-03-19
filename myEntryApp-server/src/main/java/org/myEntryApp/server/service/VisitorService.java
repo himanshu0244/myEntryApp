@@ -1,20 +1,19 @@
 package org.myEntryApp.server.service;
 
-import java.util.List;
-
-import org.myEntryApp.server.dto.VisitorDTO;
+import org.myEntryApp.server.dto.VisitorRequestDTO;
+import org.myEntryApp.server.dto.VisitorResponseDTO;
 
 public interface VisitorService {
 
-	public List<VisitorDTO> getAllVisitors();
+	public VisitorResponseDTO getAllVisitors();
 	
-	public VisitorDTO createVisitor(VisitorDTO visitor );
+	public VisitorResponseDTO createVisitor(VisitorRequestDTO visitor );
 	
-	public VisitorDTO updateVisitor(Long visitorId);
+	public VisitorResponseDTO updateVisitor(VisitorRequestDTO visitor);
 	
-	public VisitorDTO getVisitor(Long visitorId);
+	public VisitorResponseDTO getVisitor(Long visitorId);
 	
-	public VisitorDTO deleteVisitor(Long visitorId);
+	public VisitorResponseDTO deleteVisitor(Long visitorId);
 	
 	
 }

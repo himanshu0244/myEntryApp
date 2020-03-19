@@ -3,6 +3,7 @@ package org.myEntryApp.server.domain;
 import static org.myEntryApp.server.constants.CommonConstants.ID;
 import static org.myEntryApp.server.constants.CommonConstants.LOCATION;
 import static org.myEntryApp.server.constants.CommonConstants.LOCATION_NAME;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
