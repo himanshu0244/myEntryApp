@@ -2,10 +2,12 @@ package org.myEntryApp.server.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.myEntryApp.server.domain.Visitor;
 import org.myEntryApp.server.dto.VisitorDTO;
 import org.myEntryApp.server.dto.VisitorRequestDTO;
+import org.myEntryApp.server.dto.VisitorResponseBodyDTO;
 import org.myEntryApp.server.dto.VisitorResponseDTO;
 import org.myEntryApp.server.repository.VisitorRepository;
 import org.myEntryApp.server.service.VisitorService;
@@ -21,11 +23,28 @@ public class VisitorServiceImpl implements VisitorService {
 
   @Override
   public VisitorResponseDTO getAllVisitors() {
-    List<Visitor> visitors = new ArrayList<>();
-    visitorRepository.fetchAllVisitors().ifPresent(liVisitor -> {
-      visitors.addAll(liVisitor);
+    List<VisitorDTO> visitorDTOList = new ArrayList<>();
+    Optional<List<Visitor>> visitors = visitorRepository.fetchAllVisitors();
+    if (visitors.isPresent()) {
+      visitorDTOList = prepareVisitorDTOList(visitors.get());
+    }
+    return prepareVisitorResponse(visitorDTOList);
+  }
+
+  private List<VisitorDTO> prepareVisitorDTOList(List<Visitor> liVisitor) {
+    List<VisitorDTO> visitors = new ArrayList<>();
+    liVisitor.stream().forEach(visitor -> {
+      visitors.add(prepareVisitorDTO(visitor));
     });
-    return prepareVisitorResponse(visitors);
+    return visitors;
+
+  }
+
+  private VisitorDTO prepareVisitorDTO(Visitor visitor) {
+
+    VisitorDTO visitorDTO = new VisitorDTO();
+    BeanUtils.copyProperties(visitor, visitorDTO);
+    return visitorDTO;
   }
 
   @Override
@@ -54,15 +73,11 @@ public class VisitorServiceImpl implements VisitorService {
     return null;
   }
 
-  private VisitorResponseDTO prepareVisitorResponse(List<Visitor> liVisitor) {
-    List<VisitorDTO> visitors = new ArrayList<>();
-    liVisitor.forEach(visitor -> {
-      VisitorDTO visitorDTO = new VisitorDTO();
-      BeanUtils.copyProperties(visitor, visitorDTO);
-      visitors.add(visitorDTO);
-    });
-
-    return visitors;
+  private VisitorResponseDTO prepareVisitorResponse(List<VisitorDTO> liVisitor) {
+    VisitorResponseDTO visitorResponseDTO = new VisitorResponseDTO();
+    visitorResponseDTO.setResponseBody(new VisitorResponseBodyDTO());
+    visitorResponseDTO.getResponseBody().setVisitors(liVisitor);
+    return visitorResponseDTO;
   }
 
 }

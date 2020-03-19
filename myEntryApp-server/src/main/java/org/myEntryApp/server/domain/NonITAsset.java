@@ -2,7 +2,6 @@ package org.myEntryApp.server.domain;
 
 import static org.myEntryApp.server.constants.CommonConstants.ACCOUNT_NAME;
 import static org.myEntryApp.server.constants.CommonConstants.DESCRIPTION;
-import static org.myEntryApp.server.constants.CommonConstants.EMP_ID;
 import static org.myEntryApp.server.constants.CommonConstants.ID;
 import static org.myEntryApp.server.constants.CommonConstants.IMAGE;
 import static org.myEntryApp.server.constants.CommonConstants.LOCATION;

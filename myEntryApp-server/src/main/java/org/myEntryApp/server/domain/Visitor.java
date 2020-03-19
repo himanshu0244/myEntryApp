@@ -42,7 +42,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = VISITOR)
-public class Visitor implements Serializable {
+public class Visitor  extends BaseEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

@@ -3,6 +3,13 @@ package org.myEntryApp.server.constants;
 public class CommonConstants {
 
 	public static final String ID = "ID";
+	
+	 public static final String CREATED_DATE = "CREATED_DATE";
+	 public static final String CREATED_BY = "CREATED_BY";
+	 public static final String MODIFIED_DATE = "MODIFIED_DATE";
+	 public static final String MODIFIED_BY = "MODIFIED_BY";
+	 
+	 
 	// Account Entity
 	public static final String ACCOUNT = "ACCOUNT";
 	public static final String ACCOUNT_NAME = "ACCOUNT_NAME";
