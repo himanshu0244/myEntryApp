@@ -15,7 +15,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class VisitorDTO {
 
-	private String id;
+	private Long id;
 
 	private String visitorType;
 
@@ -30,6 +30,7 @@ public class VisitorDTO {
 	private String location;
 
 	private String visitorEmpId;
+	
 
 	@Override
 	public String toString() {
