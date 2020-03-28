@@ -7,9 +7,9 @@ public interface VisitorService {
 
 	public VisitorResponseDTO getAllVisitors();
 	
-	public VisitorResponseDTO createVisitor(VisitorRequestDTO visitor );
+	public VisitorResponseDTO createVisitor(VisitorRequestDTO visitorRequestDTO );
 	
-	public VisitorResponseDTO updateVisitor(VisitorRequestDTO visitor);
+	public VisitorResponseDTO updateVisitor(VisitorRequestDTO visitorRequestDTO);
 	
 	public VisitorResponseDTO getVisitor(Long visitorId);
 	

@@ -3,6 +3,7 @@ package org.myEntryApp.server.constants;
 public class CommonConstants {
 
 	public static final String ID = "ID";
+	public static final String ACTIVE_IND = "ACTIVE_IND";
 	
 	 public static final String CREATED_DATE = "CREATED_DATE";
 	 public static final String CREATED_BY = "CREATED_BY";
@@ -38,24 +39,26 @@ public class CommonConstants {
 	public static final String ITASSET = "ITASSET";
 	public static final String MOVEMENT_TYPE = "EMP_ID";
 	public static final String MOVEMENT_DATE = "FIRST_NAME";
-	public static final String IMAGE = "LAST_NAME";
+	public static final String IMAGE = "IMAGE";
 	public static final String DESCRIPTION = "DESCRIPTION";
 	public static final String NON_ITASSET = "NON_ITASSET";
 	public static final String SECURITY = "SECURITY";
 	
 	//VISITOR
 	public static final String VISITOR = "VISITOR";
+	public static final String VISITOR_SEQ = "VISITOR_SEQ";
 	public static final String VISITOR_ID = "VISITOR_ID";
 	public static final String VISITOR_TYPE = "VISITOR_TYPE";
-	public static final String CONTACT_NUMNER = "CONTACT_NUMNER";
+	public static final String CONTACT_NUMBER = "CONTACT_NUMBER";
 	public static final String PURPOSE = "PURPOSE";
 	public static final String ESCORT_EMP_ID = "ESCORT_EMP_ID";
-	public static final String LAPTOP_SERIAL_NUMNER = "LAPTOP_SERIAL_NUMNER";
+	public static final String LAPTOP_SERIAL_NUMBER = "LAPTOP_SERIAL_NUMBER";
 	public static final String REMARKS = "REMARKS";
 	public static final String IN_TIME = "IN_TIME";
 	public static final String OUT_TIME = "OUT_TIME";
 	public static final String ODC_LOCATION = "ODC_LOCATION";
 	public static final String PROXY = "PROXY";
+	public static final String EMPLOYEE_TYPE = "EMPLOYEE_TYPE";
 
 
 	
