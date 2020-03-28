@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
+import org.myEntryApp.server.constants.CommonConstants;
 import org.myEntryApp.server.domain.Visitor;
 import org.myEntryApp.server.dto.VisitorDTO;
 import org.myEntryApp.server.dto.VisitorRequestDTO;
@@ -30,7 +32,7 @@ public class VisitorServiceImpl implements VisitorService {
 		if (visitors.isPresent()) {
 			visitorDTOList = prepareVisitorDTOList(visitors.get());
 		}
-		return prepareVisitorResponse(visitorDTOList);
+		return prepareVisitorResponse(visitorDTOList, StringUtils.EMPTY);
 	}
 
 	private List<VisitorDTO> prepareVisitorDTOList(List<Visitor> liVisitor) {
@@ -53,15 +55,15 @@ public class VisitorServiceImpl implements VisitorService {
 	public VisitorResponseDTO createVisitor(VisitorRequestDTO visitorRequestDTO) {
 		Visitor visitor = new Visitor();
 		StringBuilder messageBuilder = new StringBuilder();
-
+		List<VisitorDTO> visitorDTOList = null;
 		VisitorDTO visitorDTO = visitorRequestDTO.getRequestBody().getVisitorDTO();
 		if (!visitorExists(visitorDTO)) {
 			saveVisitor(visitorDTO, visitor);
+			visitorDTOList = prepareVisitorDTOList(Arrays.asList(visitor));
 		} else {
-			messageBuilder.append("Visitor Already Exists with id");
+			messageBuilder.append("Visitor Already Exists");
 		}
-		List<VisitorDTO> visitorDTOList = prepareVisitorDTOList(Arrays.asList(visitor));
-		return prepareVisitorResponse(visitorDTOList);
+		return prepareVisitorResponse(visitorDTOList, messageBuilder.toString());
 	}
 
 	private boolean visitorExists(VisitorDTO visitorDTO) {
@@ -77,14 +79,39 @@ public class VisitorServiceImpl implements VisitorService {
 		visitor.setActiveInd(1);
 		visitor.setFirstName(visitorDTO.getFirstName().toUpperCase(Locale.ENGLISH));
 		visitor.setLastName(visitorDTO.getLastName().toUpperCase(Locale.ENGLISH));
+		visitor.setStatus(CommonConstants.ADDED);
 		visitorRepository.save(visitor);
 		return visitor;
 
 	}
 
 	@Override
-	public VisitorResponseDTO updateVisitor(VisitorRequestDTO visitorDTO) {
-		// TODO Auto-generated method stub
+	public VisitorResponseDTO updateVisitor(VisitorRequestDTO updateVisitorDTO) {
+		Visitor visitor = fetchVisitorById(updateVisitorDTO.getRequestBody().getVisitorDTO().getId());
+		StringBuilder messageBuilder = new StringBuilder();
+		List<VisitorDTO> visitorDTOList = null;
+		if (visitor != null) {
+			updateAndSaveVisitor(visitor, updateVisitorDTO.getRequestBody().getVisitorDTO());
+			visitorDTOList = prepareVisitorDTOList(Arrays.asList(visitor));
+		} else {
+			messageBuilder.append("visitor cannot be updated");
+		}
+		return prepareVisitorResponse(visitorDTOList, messageBuilder.toString());
+
+	}
+
+	private void updateAndSaveVisitor(Visitor visitor, VisitorDTO visitorDTO) {
+		BeanUtils.copyProperties(visitorDTO, visitor);
+		visitor.setFirstName(visitorDTO.getFirstName().toUpperCase(Locale.ENGLISH));
+		visitor.setLastName(visitorDTO.getLastName().toUpperCase(Locale.ENGLISH));
+		visitorRepository.save(visitor);
+	}
+
+	private Visitor fetchVisitorById(Long visitorId) {
+		Optional<Visitor> visitorEntity = visitorRepository.findById(visitorId);
+		if (visitorEntity.isPresent()) {
+			return visitorEntity.get();
+		}
 		return null;
 	}
 
@@ -95,19 +122,36 @@ public class VisitorServiceImpl implements VisitorService {
 		if (visitor.isPresent()) {
 			visitorDTOList = prepareVisitorDTOList(Arrays.asList(visitor.get()));
 		}
-		return prepareVisitorResponse(visitorDTOList);
+		return prepareVisitorResponse(visitorDTOList, StringUtils.EMPTY);
 	}
 
 	@Override
 	public VisitorResponseDTO deleteVisitor(Long visitorId) {
-		// TODO Auto-generated method stub
-		return null;
+		return deleteVisitorAndSave(fetchVisitorById(visitorId));
 	}
 
-	private VisitorResponseDTO prepareVisitorResponse(List<VisitorDTO> liVisitor) {
+	private VisitorResponseDTO deleteVisitorAndSave(Visitor visitor) {
+		List<VisitorDTO> visitorDTOList = new ArrayList<>();
+		StringBuilder messageBuilder = new StringBuilder();
+		if (visitor != null) {
+			visitor.setActiveInd(0);
+			visitor.setStatus(CommonConstants.DELETED);
+			visitorRepository.save(visitor);
+			visitorDTOList = prepareVisitorDTOList(Arrays.asList(visitor));
+		} else {
+			messageBuilder.append("visitor cannot be deleted");
+		}
+		return prepareVisitorResponse(visitorDTOList, messageBuilder.toString());
+	}
+
+	private VisitorResponseDTO prepareVisitorResponse(List<VisitorDTO> liVisitor, String message) {
 		VisitorResponseDTO visitorResponseDTO = new VisitorResponseDTO();
 		visitorResponseDTO.setResponseBody(new VisitorResponseBodyDTO());
-		visitorResponseDTO.getResponseBody().setVisitors(liVisitor);
+		if (!StringUtils.isEmpty(message)) {
+			visitorResponseDTO.getResponseBody().setMessage(message);
+		} else {
+			visitorResponseDTO.getResponseBody().setVisitors(liVisitor);
+		}
 		return visitorResponseDTO;
 	}
 

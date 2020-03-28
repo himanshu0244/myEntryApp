@@ -21,6 +21,7 @@ import static org.myEntryApp.server.constants.CommonConstants.REMARKS;
 import static org.myEntryApp.server.constants.CommonConstants.VISITOR;
 import static org.myEntryApp.server.constants.CommonConstants.VISITOR_SEQ;
 import static org.myEntryApp.server.constants.CommonConstants.VISITOR_TYPE;
+import static org.myEntryApp.server.constants.CommonConstants.STATUS;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -109,4 +110,8 @@ public class Visitor extends BaseEntity implements Serializable {
 
 	@Column(name = PROXY)
 	private String proxy;
+	
+	@Column(name = STATUS)
+	private String status;
+	
 }

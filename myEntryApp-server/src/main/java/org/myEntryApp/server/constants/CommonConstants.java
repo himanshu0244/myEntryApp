@@ -59,6 +59,11 @@ public class CommonConstants {
 	public static final String ODC_LOCATION = "ODC_LOCATION";
 	public static final String PROXY = "PROXY";
 	public static final String EMPLOYEE_TYPE = "EMPLOYEE_TYPE";
+	public static final String STATUS ="STATUS";
+	
+	
+	public static final String ADDED = "ADDED";
+	public static final String DELETED = "DELETED";
 
 
 	
