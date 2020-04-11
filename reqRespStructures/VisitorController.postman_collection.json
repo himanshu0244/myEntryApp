@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "a7f71e74-909d-45f7-b9f0-27dbb54c0cc7",
+		"name": "VisitorController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "saveVisitor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"requestBody\":{\n\t\t\"visitorDTO\":{\n\t\t\t\"firstName\":\"himanshu\",\n\t\t\t\"lastName\":\"goel\",\n\t\t\t\"contactNumber\":\"9043271156\",\n\t\t\t\"purpose\":\"guest interview\",\n\t\t\t\"location\":\"HYD\",\n\t\t\t\"visitorEmpId\": \"389128\"\n\t\t}\n\t}\n}\n"
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/visitor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/visitor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"visitor"
+					]
+				},
+				"description": "get Visitor"
+			},
+			"response": []
+		}
+	]
+}
