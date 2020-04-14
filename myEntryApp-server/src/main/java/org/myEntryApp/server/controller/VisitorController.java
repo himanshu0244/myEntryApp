@@ -30,6 +30,15 @@ public class VisitorController {
 		return visitorResponseDTO;
 	}
 
+	@GetMapping("/search/{searchString}")
+	public  VisitorResponseDTO searchVistorByName(@PathVariable String searchString) {
+		long startTime = System.currentTimeMillis();
+		VisitorResponseDTO visitorResponseDTO= null;
+		visitorResponseDTO= visitorService.searchVistorByName(searchString.toUpperCase());
+		visitorResponseDTO.setResponseHeader(ApplicationUtils.prepareResponseHeader(startTime));
+		return visitorResponseDTO;
+	}
+
 	@GetMapping("/{visitorId}")
 	public VisitorResponseDTO getVisitor(@PathVariable Long visitorId) {
 		long startTime = System.currentTimeMillis();

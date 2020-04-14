@@ -14,4 +14,7 @@ public interface VisitorRepository extends CrudRepository<Visitor, Long> {
 
 	@Query("Select visitor from Visitor visitor where visitor.visitorEmpId = :visitorEmpId and visitor.activeInd=1 ")
 	Optional<Visitor> findByEmployeeId(String visitorEmpId);
+
+	@Query("Select visitor from Visitor visitor where ( visitor.firstName like %:searchString% or visitor.lastName like %:searchString% ) and visitor.activeInd=1 ")
+	Optional<List<Visitor>> fectchvisitorsbyname(String searchString);
 }

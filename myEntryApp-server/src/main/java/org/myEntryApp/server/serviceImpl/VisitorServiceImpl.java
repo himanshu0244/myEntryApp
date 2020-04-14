@@ -155,4 +155,16 @@ public class VisitorServiceImpl implements VisitorService {
 		return visitorResponseDTO;
 	}
 
+	public VisitorResponseDTO searchVistorByName(String searchString) {
+		List<VisitorDTO> visitorDTOList = new ArrayList<>();
+		Optional<List<Visitor>> visitors = visitorRepository.fectchvisitorsbyname(searchString);
+		StringBuilder messageBuilder = new StringBuilder();
+		if (visitors.isPresent()) {
+			visitorDTOList = prepareVisitorDTOList(visitors.get());
+		}
+		else {
+			messageBuilder.append("Visitor not found");
+		}
+		return prepareVisitorResponse(visitorDTOList, messageBuilder.toString());
+	}
 }
